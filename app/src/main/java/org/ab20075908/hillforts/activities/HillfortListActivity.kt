@@ -1,6 +1,7 @@
 package org.ab20075908.hillforts.activities
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -40,6 +41,11 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
             R.id.item_add -> startActivityForResult<HillfortActivity>(0)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        recyclerView.adapter?.notifyDataSetChanged()
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onHillfortClick(hillfort: HillfortModel) {
