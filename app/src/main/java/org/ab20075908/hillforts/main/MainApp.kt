@@ -8,7 +8,7 @@ import org.jetbrains.anko.info
 
 class MainApp : Application(), AnkoLogger {
 
-    lateinit var hillforts: HillfortStore
+    lateinit var hillforts: HillfortJSONStore
 
     override fun onCreate() {
         super.onCreate()

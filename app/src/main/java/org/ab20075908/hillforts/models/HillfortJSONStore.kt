@@ -9,6 +9,7 @@ import org.ab20075908.hillforts.helpers.read
 import org.ab20075908.hillforts.helpers.write
 import org.jetbrains.anko.AnkoLogger
 import org.ab20075908.hillforts.helpers.*
+import org.jetbrains.anko.info
 import java.util.*
 
 val JSON_FILE = "hillforts.json"
@@ -43,7 +44,26 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
 
 
     override fun update(hillfort: HillfortModel) {
-        // todo
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+        if (foundHillfort != null) {
+            foundHillfort.title = hillfort.title
+            foundHillfort.description = hillfort.description
+            foundHillfort.image = hillfort.image
+            foundHillfort.lat = hillfort.lat
+            foundHillfort.lng = hillfort.lng
+            foundHillfort.zoom = hillfort.zoom
+            logAll();
+        }
+    }
+
+    override fun delete(hillfort: HillfortModel) {
+        var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
+
+        if(foundHillfort != null)
+        {
+            hillforts.remove(foundHillfort)
+        }
+        serialize()
     }
 
     private fun serialize() {
@@ -54,5 +74,9 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)
         hillforts = Gson().fromJson(jsonString, listType)
+    }
+
+    fun logAll() {
+        hillforts.forEach { info("${it}") }
     }
 }

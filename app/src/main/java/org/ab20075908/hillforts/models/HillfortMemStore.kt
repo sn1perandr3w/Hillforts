@@ -36,6 +36,10 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         }
     }
 
+    override fun delete(hillfort: HillfortModel) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     fun logAll() {
         hillforts.forEach { info("${it}") }
     }
