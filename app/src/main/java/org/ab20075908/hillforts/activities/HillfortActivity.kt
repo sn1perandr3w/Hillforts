@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.CheckBox
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.ab20075908.hillforts.R
 import org.ab20075908.hillforts.helpers.readImage
@@ -43,6 +45,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfortTitle.setText(hillfort.title)
             description.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
+            checkbox_visited.isChecked = hillfort.visited
             hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
             if (hillfort.image != null) {
                 chooseImage.setText(R.string.change_hillfort_image)
@@ -66,6 +69,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             finish()
         }
 
+
+
+
+
         chooseImage.setOnClickListener {
             showImagePicker(this, IMAGE_REQUEST)
         }
@@ -78,6 +85,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
                 location.zoom = hillfort.zoom
             }
             startActivityForResult(intentFor<MapActivity>().putExtra("location", location), LOCATION_REQUEST)
+        }
+
+        checkbox_visited.setOnClickListener()
+        {
+           onCheckboxClicked(checkbox_visited)
         }
 
 
@@ -100,6 +112,30 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
         return super.onOptionsItemSelected(item)
     }
+
+     fun onCheckboxClicked(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
+
+            info("CHECKBOX")
+            info("VISITED STATE = $hillfort.visited")
+            when (view.id) {
+                R.id.checkbox_visited -> {
+                    if (checked) {
+                        info("CHECKBOX TRUE")
+                        hillfort.visited = true
+                    } else {
+                        info("CHECKBOX FALSE")
+                        hillfort.visited = false
+                    }
+
+                    info("VISITED STATE = $hillfort.visited")
+                }
+            }
+        }
+    }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
