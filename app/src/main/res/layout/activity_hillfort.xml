@@ -67,6 +67,55 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp" />
 
+                <TextView android:id="@+id/imageHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/label_imageHint"
+                    android:textSize="16sp"
+                    android:layout_gravity="center_horizontal"
+                />
+
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/imageLeft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@color/colorAccent"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="&lt;"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp"/>
+
+                    <TextView android:id="@+id/imageNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="@string/label_imageNo"
+                        android:textSize="24sp"/>
+
+                <Button
+                    android:id="@+id/imageRight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@color/colorAccent"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="&gt;"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp"/>
+
+                </TableRow>
+
+
 
 
                 <Button
@@ -87,13 +136,15 @@
                     android:text="@string/checkbox_visited"
                     android:onClick="onCheckboxClicked"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+
+
+                <TableRow
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_gravity="center_horizontal">
 
                 <ImageView
-                    android:id="@+id/hillfortImage"
+                    android:id="@+id/hillfortImage1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:srcCompat="@mipmap/ic_launcher"/>
@@ -104,6 +155,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:srcCompat="@mipmap/ic_launcher"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
 
                 <ImageView
                     android:id="@+id/hillfortImage3"
@@ -117,8 +175,9 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@mipmap/ic_launcher"/>
 
+                </TableRow>
 
-            </LinearLayout>
+
                 <Button
                     android:id="@+id/hillfortLocation"
                     android:layout_width="match_parent"

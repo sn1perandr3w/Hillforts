@@ -25,6 +25,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     var hillfort = HillfortModel()
     lateinit var app: MainApp
     val IMAGE_REQUEST = 1
+    var IMAGE_NO = 1
     val LOCATION_REQUEST = 2
     var location = Location(52.245696, -7.139102, 15f)
 
@@ -46,10 +47,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             description.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
             checkbox_visited.isChecked = hillfort.visited
-            hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+            hillfortImage1.setImageBitmap(readImageFromPath(this, hillfort.image1))
+            hillfortImage2.setImageBitmap(readImageFromPath(this, hillfort.image2))
+            hillfortImage3.setImageBitmap(readImageFromPath(this, hillfort.image3))
+            hillfortImage4.setImageBitmap(readImageFromPath(this, hillfort.image4))
+            /*
             if (hillfort.image != null) {
                 chooseImage.setText(R.string.change_hillfort_image)
-            }
+            }*/
         }
 
         btnAdd.setOnClickListener() {
@@ -75,6 +80,16 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
         chooseImage.setOnClickListener {
             showImagePicker(this, IMAGE_REQUEST)
+        }
+
+        imageLeft.setOnClickListener {
+            info("DECREMENT LISTENER")
+            decrementImageSelected()
+        }
+
+        imageRight.setOnClickListener {
+            info("INCREMENT LISTENER")
+            incrementImageSelected()
         }
 
         hillfortLocation.setOnClickListener {
@@ -135,6 +150,30 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
+    fun incrementImageSelected()
+    {
+        info("INCREMENTING")
+        info("INCREMENTING = $IMAGE_NO")
+        if(IMAGE_NO < 4)
+        {
+            IMAGE_NO++;
+            imageNo.setText("$IMAGE_NO");
+        }
+        info("INCREMENTING = $IMAGE_NO")
+    }
+
+    fun decrementImageSelected()
+    {
+        info("DECREMENTING")
+        info("DECREMENTING = $IMAGE_NO")
+        if(IMAGE_NO > 1)
+        {
+            IMAGE_NO--;
+            imageNo.setText("$IMAGE_NO");
+        }
+        info("DECREMENTING = $IMAGE_NO")
+    }
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -142,9 +181,31 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         when (requestCode) {
             IMAGE_REQUEST -> {
                 if (data != null) {
-                    hillfort.image = data.getData().toString()
-                    hillfortImage.setImageBitmap(readImage(this, resultCode, data))
-                    chooseImage.setText(R.string.change_hillfort_image)
+                    when(IMAGE_NO) {
+                        1 -> {
+                            hillfort.image1 = data.getData().toString()
+                            hillfortImage1.setImageBitmap(readImage(this, resultCode, data))
+                            //chooseImage.setText(R.string.change_hillfort_image)
+                        }
+
+                        2 -> {
+                            hillfort.image2 = data.getData().toString()
+                            hillfortImage2.setImageBitmap(readImage(this, resultCode, data))
+                            //chooseImage.setText(R.string.change_hillfort_image)
+                        }
+
+                        3 -> {
+                            hillfort.image3 = data.getData().toString()
+                            hillfortImage3.setImageBitmap(readImage(this, resultCode, data))
+                            //chooseImage.setText(R.string.change_hillfort_image)
+                        }
+
+                        4 -> {
+                            hillfort.image4 = data.getData().toString()
+                            hillfortImage4.setImageBitmap(readImage(this, resultCode, data))
+                            //chooseImage.setText(R.string.change_hillfort_image)
+                        }
+                    }
                 }
             }
             LOCATION_REQUEST -> {
