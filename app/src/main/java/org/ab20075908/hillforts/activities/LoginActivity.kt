@@ -1,27 +1,15 @@
 package org.ab20075908.hillforts.activities
 
-import android.app.ListActivity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.CheckBox
-import kotlinx.android.synthetic.main.activity_hillfort.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.ab20075908.hillforts.R
-import org.ab20075908.hillforts.helpers.readImage
-import org.ab20075908.hillforts.helpers.readImageFromPath
-import org.ab20075908.hillforts.models.HillfortModel
+import org.ab20075908.hillforts.main.MainApp
+import org.ab20075908.hillforts.models.UserModel
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.jetbrains.anko.toast
-import org.ab20075908.hillforts.main.MainApp
-import org.ab20075908.hillforts.helpers.showImagePicker
-import org.ab20075908.hillforts.models.Location
-import org.ab20075908.hillforts.models.UserModel
-import org.jetbrains.anko.intentFor
+
 
 class LoginActivity : AppCompatActivity(), AnkoLogger {
 

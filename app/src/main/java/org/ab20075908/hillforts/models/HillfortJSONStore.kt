@@ -8,7 +8,6 @@ import org.ab20075908.hillforts.helpers.exists
 import org.ab20075908.hillforts.helpers.read
 import org.ab20075908.hillforts.helpers.write
 import org.jetbrains.anko.AnkoLogger
-import org.ab20075908.hillforts.helpers.*
 import org.jetbrains.anko.info
 import java.util.*
 
