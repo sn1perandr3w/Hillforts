@@ -10,6 +10,8 @@ import android.provider.MediaStore
 import org.ab20075908.hillforts.R
 import java.io.IOException
 
+//Standard ImageHelper from Placemark
+
 fun showImagePicker(parent: Activity, id: Int) {
     val intent = Intent()
     intent.type = "image/*"

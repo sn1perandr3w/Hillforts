@@ -22,6 +22,7 @@
             android:label="@string/title_activity_map"></activity>
         <activity android:name=".activities.HillfortActivity"></activity>
         <activity android:name=".activities.LoginActivity"></activity>
+        <activity android:name=".activities.SettingsActivity"></activity>
         <activity android:name=".activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

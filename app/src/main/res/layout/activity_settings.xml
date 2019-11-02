@@ -23,7 +23,7 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarAdd"
+                android:id="@+id/toolbarSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:titleTextColor="@color/colorPrimary" />
@@ -41,7 +41,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/usernameField"
+                    android:id="@+id/emailEditField"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
@@ -55,7 +55,7 @@
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/passwordField"
+                    android:id="@+id/passwordEditField"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"

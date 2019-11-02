@@ -25,9 +25,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
     var hillfort = HillfortModel()
     lateinit var app: MainApp
     val IMAGE_REQUEST = 1
+    //IMAGE_NO is used to determine which of 4 image slots are added to.
+    //Image MUST be in first slot to show up as a thumbnail on listview
     var IMAGE_NO = 1
     val LOCATION_REQUEST = 2
-    var location = Location(52.245696, -7.139102, 15f)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
         var edit = false
 
+        //Set up hillfort for editing, including all 4 images and checkbox to edit.
+
         if (intent.hasExtra("hillfort_edit")) {
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
@@ -51,11 +55,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfortImage2.setImageBitmap(readImageFromPath(this, hillfort.image2))
             hillfortImage3.setImageBitmap(readImageFromPath(this, hillfort.image3))
             hillfortImage4.setImageBitmap(readImageFromPath(this, hillfort.image4))
-            /*
-            if (hillfort.image != null) {
-                chooseImage.setText(R.string.change_hillfort_image)
-            }*/
         }
+
+        //Listener for button to add hillfort
 
         btnAdd.setOnClickListener() {
             hillfort.title = hillfortTitle.text.toString()
@@ -79,20 +81,28 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
 
 
+        //Listener for image picker
 
         chooseImage.setOnClickListener {
             showImagePicker(this, IMAGE_REQUEST)
         }
+
+        //Listener for decrementing image number to be selected by imagepicker
 
         imageLeft.setOnClickListener {
             info("DECREMENT LISTENER")
             decrementImageSelected()
         }
 
+        //Listener for incrementing image number to be selected by imagepicker
+
         imageRight.setOnClickListener {
             info("INCREMENT LISTENER")
             incrementImageSelected()
         }
+
+
+        //Image picker for location
 
         hillfortLocation.setOnClickListener {
             val location = Location(52.245696, -7.139102, 15f)
@@ -104,6 +114,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             startActivityForResult(intentFor<MapActivity>().putExtra("location", location), LOCATION_REQUEST)
         }
 
+        //Listener for checkbox for having visited location
+
         checkbox_visited.setOnClickListener()
         {
            onCheckboxClicked(checkbox_visited)
@@ -112,10 +124,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
 
     }
 
+    //Sets up menu bar at the top
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_hillfort, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+    //Allows user to click items on menu bar at top
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
@@ -129,6 +145,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    //Checkbox for having visited the location
 
      fun onCheckboxClicked(view: View) {
         if (view is CheckBox) {
@@ -152,6 +170,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
+
+    //Increments number of which image will be set by imagepicker
+
     fun incrementImageSelected()
     {
         info("INCREMENTING")
@@ -163,6 +184,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
         info("INCREMENTING = $IMAGE_NO")
     }
+
+    //Decrements number of which image will be set by imagepicker
 
     fun decrementImageSelected()
     {
@@ -176,7 +199,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         info("DECREMENTING = $IMAGE_NO")
     }
 
+    //Depending on number set, will direct the imagepicker to place an image in
+    //one of four slots.
 
+    //Also used for location setting as seen in Placemark.
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

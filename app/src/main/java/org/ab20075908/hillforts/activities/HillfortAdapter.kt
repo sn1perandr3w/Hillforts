@@ -9,6 +9,9 @@ import org.ab20075908.hillforts.R
 import org.ab20075908.hillforts.helpers.readImageFromPath
 import org.ab20075908.hillforts.models.HillfortModel
 
+//Standard Adapter from Placemark
+
+
 interface HillfortListener {
     fun onHillfortClick(hillfort: HillfortModel)
 }

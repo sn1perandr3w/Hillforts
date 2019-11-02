@@ -14,6 +14,8 @@ import org.ab20075908.hillforts.models.HillfortModel
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 
+//Standard ListActivity from Placemark aside of additional options to menu at top
+//Menu Bar is commented below
 
 class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
@@ -37,9 +39,12 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         return super.onCreateOptionsMenu(menu)
     }
 
+    //Menu bar to allow user to add Hillfort, go to settings or log out.
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_add -> startActivityForResult<HillfortActivity>(0)
+            R.id.item_settings -> startActivityForResult<SettingsActivity>(0)
+            R.id.item_logout -> startActivityForResult<LoginActivity>(0)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -56,6 +61,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
     private fun loadHillforts() {
         showHillforts(app.hillforts.findAll())
     }
+
 
     fun showHillforts (hillforts: List<HillfortModel>) {
         recyclerView.adapter = HillfortAdapter(hillforts, this)

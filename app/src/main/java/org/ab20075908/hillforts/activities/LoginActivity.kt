@@ -20,6 +20,7 @@ import org.jetbrains.anko.toast
 import org.ab20075908.hillforts.main.MainApp
 import org.ab20075908.hillforts.helpers.showImagePicker
 import org.ab20075908.hillforts.models.Location
+import org.ab20075908.hillforts.models.UserModel
 import org.jetbrains.anko.intentFor
 
 class LoginActivity : AppCompatActivity(), AnkoLogger {
@@ -33,6 +34,10 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
 
         app = application as MainApp
 
+        //User cannot be nullable due to being lateinit so this will help for signing out.
+        app.signedInUser = UserModel()
+
+        //Listeners
 
         btnLogin.setOnClickListener {
             info("LOGIN BUTTON")
@@ -49,7 +54,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
 
     }
 
-
+    //Retrieves user based on input credentials. If not null, log in. If null, do not.
 
     fun onLoginClick() {
 
@@ -59,9 +64,12 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
         if(user != null) {
             val intent = Intent(applicationContext, HillfortListActivity::class.java)
             finish()
+            app.signedInUser = user
             startActivity(intent)
         }
     }
+
+    //Creates user based on input credentials.
 
     fun onRegisterClick() {
 

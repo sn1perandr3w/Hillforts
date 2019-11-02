@@ -12,6 +12,12 @@ import org.ab20075908.hillforts.helpers.*
 import org.jetbrains.anko.info
 import java.util.*
 
+//TWO JSON FILES ARE USED WITH THIS APPLICATION
+//Hillforts.json for storing hillforts
+//Users.json for storing users.
+
+//List types are assigned to these different files below.
+
 val JSON_FILE = "hillforts.json"
 val USRJSON_FILE = "users.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
@@ -61,6 +67,9 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         serializeUsers()
     }
 
+    //Returns user if found, else returning null. This will allow the player to
+    //log in and will load the user into MainApp if found
+
     override fun login(email : String, password : String) : UserModel?
     {
         var foundUser: UserModel?
@@ -86,6 +95,8 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     }
 
 
+    //Updates hillfort
+
     override fun update(hillfort: HillfortModel) {
         var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
         if (foundHillfort != null) {
@@ -103,6 +114,21 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         }
     }
 
+    //Updates user credentials
+
+    override fun updateCredentials(userSignedIn: UserModel, updatedUser : UserModel) {
+        var foundUser: UserModel? = users.find { p -> p.email == userSignedIn.email }
+        if (foundUser != null) {
+            foundUser.email = updatedUser.email
+            foundUser.password = updatedUser.password
+            logAll();
+        }
+        serializeUsers()
+    }
+
+
+    //Deletes Hillfort
+
     override fun delete(hillfort: HillfortModel) {
         var foundHillfort: HillfortModel? = hillforts.find { p -> p.id == hillfort.id }
 
@@ -113,21 +139,29 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         serialize()
     }
 
+    //Serializes Hillforts
+
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(hillforts, listType)
         write(context, JSON_FILE, jsonString)
     }
+
+    //Serializes Users
 
     private fun serializeUsers() {
         val jsonString = gsonBuilder.toJson(users, listType2)
         write(context, USRJSON_FILE, jsonString)
     }
 
+    //Deserializes Users
+
     private fun deserializeUsers() {
         val jsonString = read(context, USRJSON_FILE)
         users = Gson().fromJson(jsonString, listType2)
         info("USERS  = $users")
     }
+
+    //Deserializes Hillforts
 
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)

@@ -5,21 +5,22 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import org.ab20075908.hillforts.R
-import org.ab20075908.hillforts.main.MainApp
 
-/**
- * A sample splash screen created by devdeeds.com
- * by Jayakrishnan P.M
- */
+//Based on Splash Screen Example by Devdeeds.com
+
+
 class SplashScreenActivity : AppCompatActivity() {
-    private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 3000 //3 seconds
+    //Creates handler for runnable
+    var mDelayHandler: Handler? = null
+    //Splashscreen delay
+    val SPLASH_DELAY: Long = 3000
+
+
 
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
             val intent = Intent(applicationContext, LoginActivity::class.java)
-
             finish()
             startActivity(intent)
         }
@@ -32,18 +33,8 @@ class SplashScreenActivity : AppCompatActivity() {
         //Initialize the Handler
         mDelayHandler = Handler()
 
-        //Navigate with delay
+        //Stops it from breaking if tabbing out of application
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
 
     }
-
-    public override fun onDestroy() {
-
-        if (mDelayHandler != null) {
-            mDelayHandler!!.removeCallbacks(mRunnable)
-        }
-
-        super.onDestroy()
-    }
-
 }

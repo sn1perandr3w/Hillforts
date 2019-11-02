@@ -16,6 +16,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import org.ab20075908.hillforts.R
 import org.ab20075908.hillforts.models.Location
 
+//Standard MapActivity from Placemark
+
 class MapActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
 
     private lateinit var map: GoogleMap

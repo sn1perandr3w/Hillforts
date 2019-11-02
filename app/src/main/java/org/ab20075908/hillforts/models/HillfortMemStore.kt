@@ -1,3 +1,7 @@
+/*
+//UNUSED
+
+
 package org.ab20075908.hillforts.models
 
 import org.jetbrains.anko.AnkoLogger
@@ -10,6 +14,10 @@ internal fun getId(): Long {
 }
 
 class HillfortMemStore : HillfortStore, AnkoLogger {
+    override fun updateCredentials(userSignedIn: UserModel, updatedUser: UserModel) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun login(email: String, password: String): UserModel? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -55,3 +63,5 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         hillforts.forEach { info("${it}") }
     }
 }
+
+ */
