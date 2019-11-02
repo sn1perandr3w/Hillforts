@@ -64,8 +64,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
                 toast(R.string.enter_hillfort_title)
             } else {
                 if (edit) {
+                    info("SAVING EDIT FOR HILLFORT")
                     app.hillforts.update(hillfort.copy())
                 } else {
+                    info("SAVING CREATION FOR HILLFORT")
                     app.hillforts.create(hillfort.copy())
                 }
             }

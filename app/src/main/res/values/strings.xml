@@ -16,4 +16,9 @@
     <string name="checkbox_visited">Visited</string>
     <string name="label_imageNo">1</string>
     <string name="label_imageHint">Select slot to add image</string>
+    <string name="login_username">Enter Email</string>
+    <string name="login_password">Enter Password</string>
+    <string name="button_login">Login</string>
+    <string name="button_register">Register</string>
+    <string name="button_update">Update User Credentials</string>
 </resources>

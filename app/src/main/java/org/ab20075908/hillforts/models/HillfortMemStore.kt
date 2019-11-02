@@ -10,6 +10,13 @@ internal fun getId(): Long {
 }
 
 class HillfortMemStore : HillfortStore, AnkoLogger {
+    override fun login(email: String, password: String): UserModel? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun createUser(email: String, password: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     val hillforts = ArrayList<HillfortModel>()
 
