@@ -45,6 +45,8 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         when (item?.itemId) {
             R.id.item_add -> startActivityForResult<HillfortActivity>(200)
             R.id.item_map -> startActivity<HillfortMapsActivity>()
+            R.id.item_settings -> startActivityForResult<SettingsActivity>(0)
+            R.id.item_logout -> startActivityForResult<LoginActivity>(0)
         }
         return super.onOptionsItemSelected(item)
     }
