@@ -9,6 +9,7 @@ interface HillfortStore {
     fun delete(hillfort: HillfortModel)
 
     //User functions
+    
     fun createUser(email : String, password : String)
     fun login(email : String, password : String) : UserModel?
     fun updateCredentials(userSignedIn: UserModel, updatedUser : UserModel)
