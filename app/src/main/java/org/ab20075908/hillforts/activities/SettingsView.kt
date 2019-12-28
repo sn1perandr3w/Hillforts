@@ -12,7 +12,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivityForResult
 
-class SettingsActivity : AppCompatActivity(), AnkoLogger {
+class SettingsView : AppCompatActivity(), AnkoLogger {
 
     lateinit var app: MainApp
 
@@ -51,7 +51,7 @@ class SettingsActivity : AppCompatActivity(), AnkoLogger {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_up -> finish()
-            R.id.item_logout -> startActivityForResult<LoginActivity>(0)
+            R.id.item_logout -> startActivityForResult<LoginView>(0)
 
 
         }

@@ -9,7 +9,7 @@ import org.ab20075908.hillforts.R
 //Based on Splash Screen Example by Devdeeds.com
 
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenView : AppCompatActivity() {
     //Creates handler for runnable
     var mDelayHandler: Handler? = null
     //Splashscreen delay
@@ -20,7 +20,7 @@ class SplashScreenActivity : AppCompatActivity() {
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
-            val intent = Intent(applicationContext, LoginActivity::class.java)
+            val intent = Intent(applicationContext, LoginView::class.java)
             finish()
             startActivity(intent)
         }

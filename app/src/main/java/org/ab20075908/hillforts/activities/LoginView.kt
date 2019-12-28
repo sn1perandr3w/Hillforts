@@ -7,11 +7,12 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.ab20075908.hillforts.R
 import org.ab20075908.hillforts.main.MainApp
 import org.ab20075908.hillforts.models.UserModel
+import org.ab20075908.hillforts.views.hillfortlist.HillfortListView
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
 
-class LoginActivity : AppCompatActivity(), AnkoLogger {
+class LoginView : AppCompatActivity(), AnkoLogger {
 
     lateinit var app: MainApp
 
@@ -50,7 +51,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
 
         info("USER EMAIL + PASSWORD = $emailField.text.toString() + $passwordField.text.toString()")
         if(user != null) {
-            val intent = Intent(applicationContext, HillfortListActivity::class.java)
+            val intent = Intent(applicationContext, HillfortListView::class.java)
             finish()
             app.signedInUser = user
             startActivity(intent)

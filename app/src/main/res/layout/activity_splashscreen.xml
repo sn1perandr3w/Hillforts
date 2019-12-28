@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.ab20075908.hillforts.activities.HillfortActivity">
+    tools:context="org.ab20075908.hillforts.views.hillfort.HillfortView">
 
     <RelativeLayout
         android:layout_width="match_parent"
