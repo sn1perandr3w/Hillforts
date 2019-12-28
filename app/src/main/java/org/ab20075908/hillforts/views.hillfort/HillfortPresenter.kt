@@ -4,12 +4,15 @@ package org.ab20075908.hillforts.views.hillfort
 import android.annotation.SuppressLint
 import android.content.Intent
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import org.ab20075908.hillforts.helpers.checkLocationPermissions
+import org.ab20075908.hillforts.helpers.createDefaultLocationRequest
 import org.ab20075908.hillforts.helpers.isPermissionGranted
 import org.ab20075908.hillforts.helpers.showImagePicker
 import org.ab20075908.hillforts.models.Location
@@ -25,7 +28,7 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
     var defaultLocation = Location(52.245696, -7.139102, 15f)
     var edit = false;
     var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
-
+    val locationRequest = createDefaultLocationRequest()
 
     init {
         if (view.intent.hasExtra("hillfort_edit")) {
@@ -43,6 +46,21 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
     fun doSetCurrentLocation() {
         locationService.lastLocation.addOnSuccessListener {
             locationUpdate(it.latitude, it.longitude)
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun doResartLocationUpdates() {
+        var locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                if (locationResult != null && locationResult.locations != null) {
+                    val l = locationResult.locations.last()
+                    locationUpdate(l.latitude, l.longitude)
+                }
+            }
+        }
+        if (!edit) {
+            locationService.requestLocationUpdates(locationRequest, locationCallback, null)
         }
     }
 
