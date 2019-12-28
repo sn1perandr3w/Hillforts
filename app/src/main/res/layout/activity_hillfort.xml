@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context="org.ab20075908.hillforts.views.hillfort.HillfortView">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -30,11 +30,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <EditText
                 android:id="@+id/hillfortTitle"
@@ -131,7 +132,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -193,22 +193,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
 
-            <Button
-                android:id="@+id/hillfortLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorAccent"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:stateListAnimator="@null"
-                android:text="@string/button_location"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow3"
-                tools:layout_editor_absoluteX="16dp" />
-
             <EditText
                 android:id="@+id/description"
                 android:layout_width="260dp"
@@ -230,13 +214,12 @@
                 android:layout_width="375dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hillfortLocation" />
+                app:layout_constraintTop_toBottomOf="@+id/tableRow3" />
 
             <TextView
                 android:id="@+id/lat"
