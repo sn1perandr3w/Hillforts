@@ -30,6 +30,7 @@ class EditLocationPresenter(view: BaseView) : BasePresenter(view) {
             .position(loc)
         map.addMarker(options)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
+        //view?.showLocation(loc.latitude, loc.longitude);
     }
 
     fun doUpdateLocation(lat: Double, lng: Double) {
@@ -48,4 +49,6 @@ class EditLocationPresenter(view: BaseView) : BasePresenter(view) {
         val loc = LatLng(location.lat, location.lng)
         marker.setSnippet("GPS : " + loc.toString())
     }
+
+
 }

@@ -1,4 +1,4 @@
-package org.ab20075908.hillforts.models
+package org.ab20075908.hillforts.models.json
 
 import android.content.Context
 import com.google.gson.Gson
@@ -7,6 +7,9 @@ import com.google.gson.reflect.TypeToken
 import org.ab20075908.hillforts.helpers.exists
 import org.ab20075908.hillforts.helpers.read
 import org.ab20075908.hillforts.helpers.write
+import org.ab20075908.hillforts.models.HillfortModel
+import org.ab20075908.hillforts.models.HillfortStore
+import org.ab20075908.hillforts.models.UserModel
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.util.*
@@ -59,7 +62,8 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
 
     override fun createUser(email : String, password : String) {
 
-        var user : UserModel  = UserModel()
+        var user : UserModel =
+            UserModel()
         user.email = email
         user.password = password
         users.add(user)
@@ -105,9 +109,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
             foundHillfort.image2 = hillfort.image2
             foundHillfort.image3 = hillfort.image3
             foundHillfort.image4 = hillfort.image4
-            foundHillfort.lat = hillfort.lat
-            foundHillfort.lng = hillfort.lng
-            foundHillfort.zoom = hillfort.zoom
+            foundHillfort.location = hillfort.location
             foundHillfort.visited = hillfort.visited
             logAll();
         }
@@ -141,14 +143,18 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     //Serializes Hillforts
 
     private fun serialize() {
-        val jsonString = gsonBuilder.toJson(hillforts, listType)
+        val jsonString = gsonBuilder.toJson(hillforts,
+            listType
+        )
         write(context, JSON_FILE, jsonString)
     }
 
     //Serializes Users
 
     private fun serializeUsers() {
-        val jsonString = gsonBuilder.toJson(users, listType2)
+        val jsonString = gsonBuilder.toJson(users,
+            listType2
+        )
         write(context, USRJSON_FILE, jsonString)
     }
 

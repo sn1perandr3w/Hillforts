@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.ab20075908.hillforts.R
 import org.ab20075908.hillforts.helpers.readImageFromPath
 import org.ab20075908.hillforts.models.HillfortModel
+import org.ab20075908.hillforts.models.Location
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.toast
 
@@ -27,7 +28,7 @@ class HillfortView : BaseView(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
 
-        init(toolbarAdd)
+        super.init(toolbarAdd, true)
 
         presenter = initPresenter (HillfortPresenter(this)) as HillfortPresenter
 
@@ -49,8 +50,7 @@ class HillfortView : BaseView(), AnkoLogger {
         if (hillfort.image1 != null) {
             chooseImage.setText(R.string.change_hillfort_image)
         }
-        lat.setText("%.6f".format(hillfort.lat))
-        lng.setText("%.6f".format(hillfort.lng))
+        this.showLocation(hillfort.location)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,5 +111,10 @@ class HillfortView : BaseView(), AnkoLogger {
 
     override fun onBackPressed() {
         presenter.doCancel()
+    }
+
+    override fun showLocation(location: Location) {
+        lat.setText("%.6f".format(location.lat))
+        lng.setText("%.6f".format(location.lng))
     }
 }

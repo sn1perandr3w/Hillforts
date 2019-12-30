@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 import org.ab20075908.hillforts.R
 import org.ab20075908.hillforts.main.MainApp
 import org.ab20075908.hillforts.models.UserModel
+import org.ab20075908.hillforts.views.login.LoginView
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivityForResult
@@ -47,7 +48,7 @@ class SettingsView : AppCompatActivity(), AnkoLogger {
     }
 
     //Using toolbar options
-
+    /*
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_up -> finish()
@@ -57,7 +58,7 @@ class SettingsView : AppCompatActivity(), AnkoLogger {
         }
         return super.onOptionsItemSelected(item)
     }
-
+    */
     //Button to update user credentials
 
     fun onUpdateClick() {

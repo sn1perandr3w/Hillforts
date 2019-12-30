@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import org.ab20075908.hillforts.R
+import org.ab20075908.hillforts.views.login.LoginView
 
 //Based on Splash Screen Example by Devdeeds.com
 

@@ -25,7 +25,7 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_location)
-        super.init(toolbar)
+        super.init(toolbar, true)
 
         presenter = initPresenter(EditLocationPresenter(this)) as EditLocationPresenter
 
@@ -91,4 +91,12 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
         super.onSaveInstanceState(outState)
         mapView.onSaveInstanceState(outState)
     }
+
+    /*
+    override fun showLocation(latitude : Double, longitude : Double) {
+        lat.setText("%.6f".format(latitude))
+        lng.setText("%.6f".format(longitude))
+    }
+    */
+
 }

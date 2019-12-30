@@ -1,10 +1,8 @@
 package org.ab20075908.hillforts.views.hillfortlist
 
+import com.google.firebase.auth.FirebaseAuth
 import org.ab20075908.hillforts.views.map.HillfortMapView
 import org.ab20075908.hillforts.views.hillfort.HillfortView
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.startActivityForResult
 import org.ab20075908.hillforts.main.MainApp
 import org.ab20075908.hillforts.models.HillfortModel
 
@@ -12,6 +10,7 @@ import org.ab20075908.hillforts.models.HillfortModel
 import org.ab20075908.hillforts.views.BasePresenter
 import org.ab20075908.hillforts.views.BaseView
 import org.ab20075908.hillforts.views.VIEW
+import org.jetbrains.anko.*
 
 class HillfortListPresenter(view: BaseView) : BasePresenter(view) {
 
@@ -28,6 +27,16 @@ class HillfortListPresenter(view: BaseView) : BasePresenter(view) {
     }
 
     fun loadHillforts() {
-        view?.showHillforts(app.hillforts.findAll())
+        doAsync {
+            val hillforts = app.hillforts.findAll()
+            uiThread {
+                view?.showHillforts(hillforts)
+            }
+        }
+    }
+
+    fun doLogout() {
+        FirebaseAuth.getInstance().signOut()
+        view?.navigateTo(VIEW.LOGIN)
     }
 }

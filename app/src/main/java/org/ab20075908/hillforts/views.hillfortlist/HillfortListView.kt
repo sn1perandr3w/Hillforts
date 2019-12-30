@@ -27,7 +27,7 @@ class HillfortListView : BaseView(), HillfortListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_list)
-        setSupportActionBar(toolbar)
+        super.init(toolbar, true)
 
         presenter = initPresenter(HillfortListPresenter(this)) as HillfortListPresenter
 
@@ -50,6 +50,7 @@ class HillfortListView : BaseView(), HillfortListener {
         when (item?.itemId) {
             R.id.item_add -> presenter.doAddHillfort()
             R.id.item_map -> presenter.doShowHillfortsMap()
+            R.id.item_logout ->presenter.doLogout()
         }
         return super.onOptionsItemSelected(item)
     }
