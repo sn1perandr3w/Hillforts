@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.ab20075908.hillforts.R
@@ -21,7 +22,7 @@ import org.ab20075908.hillforts.views.BaseView
 class HillfortView : BaseView(), AnkoLogger {
 
     lateinit var presenter: HillfortPresenter
-    lateinit var map: GoogleMap
+    //lateinit var map: GoogleMap
     var hillfort = HillfortModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,8 @@ class HillfortView : BaseView(), AnkoLogger {
 
         chooseImage.setOnClickListener { presenter.doSelectImage() }
 
-
+        imageLeft.setOnClickListener{presenter.decrementImageSelected()}
+        imageRight.setOnClickListener{presenter.incrementImageSelected()}
 
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync {
@@ -46,7 +48,16 @@ class HillfortView : BaseView(), AnkoLogger {
     override fun showHillfort(hillfort: HillfortModel) {
         hillfortTitle.setText(hillfort.title)
         description.setText(hillfort.description)
-        hillfortImage1.setImageBitmap(readImageFromPath(this, hillfort.image1))
+        //Glide.with(this).load(hillfort.image1).dontAnimate().into(hillfortImage1);
+        Glide.with(this).load(hillfort.image1).placeholder(R.drawable.witlogo).dontAnimate().into(hillfortImage1);
+       /* if(hillfortImage2 != null)
+        Glide.with(this).load(hillfort.image2).dontAnimate().into(hillfortImage2);
+        if(hillfortImage3 != null)
+        Glide.with(this).load(hillfort.image3).dontAnimate().into(hillfortImage3);
+        if(hillfortImage4 != null)
+        Glide.with(this).load(hillfort.image4).dontAnimate().into(hillfortImage4);
+        */
+
         if (hillfort.image1 != null) {
             chooseImage.setText(R.string.change_hillfort_image)
         }
@@ -116,5 +127,9 @@ class HillfortView : BaseView(), AnkoLogger {
     override fun showLocation(location: Location) {
         lat.setText("%.6f".format(location.lat))
         lng.setText("%.6f".format(location.lng))
+    }
+
+    override fun showSelectedImage(selection: Int) {
+        imageNo.setText("$selection");
     }
 }

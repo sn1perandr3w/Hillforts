@@ -80,4 +80,5 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
   open fun showProgress() {}
   open fun hideProgress() {}
   open fun showLocation(location : Location) {}
+  open fun showSelectedImage(selection : Int) {}
 }

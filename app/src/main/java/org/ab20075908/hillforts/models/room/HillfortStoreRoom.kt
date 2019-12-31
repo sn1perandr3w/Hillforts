@@ -10,6 +10,11 @@ import org.ab20075908.hillforts.models.room.Database
 class HillfortStoreRoom(val context: Context) : HillfortStore {
 
 
+  override fun clear() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+
   var dao: HillfortDao
 
   init {
@@ -38,7 +43,7 @@ class HillfortStoreRoom(val context: Context) : HillfortStore {
   override fun delete(hillfort: HillfortModel) {
     dao.deleteHillfort(hillfort)
   }
-
+/*
   override fun createUser(email: String, password: String) {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
@@ -51,5 +56,5 @@ class HillfortStoreRoom(val context: Context) : HillfortStore {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
-
+*/
 }

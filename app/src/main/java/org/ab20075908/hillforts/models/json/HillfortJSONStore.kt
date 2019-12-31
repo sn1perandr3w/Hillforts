@@ -59,7 +59,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         hillforts.add(hillfort)
         serialize()
     }
-
+/*
     override fun createUser(email : String, password : String) {
 
         var user : UserModel =
@@ -69,10 +69,10 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         users.add(user)
         serializeUsers()
     }
-
+*/
     //Returns user if found, else returning null. This will allow the player to
     //log in and will load the user into MainApp if found
-
+/*
     override fun login(email : String, password : String) : UserModel?
     {
         var foundUser: UserModel?
@@ -96,7 +96,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         }
         return null
     }
-
+*/
 
     //Updates hillfort
 
@@ -106,9 +106,9 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
             foundHillfort.title = hillfort.title
             foundHillfort.description = hillfort.description
             foundHillfort.image1 = hillfort.image1
-            foundHillfort.image2 = hillfort.image2
-            foundHillfort.image3 = hillfort.image3
-            foundHillfort.image4 = hillfort.image4
+            //foundHillfort.image2 = hillfort.image2
+            //foundHillfort.image3 = hillfort.image3
+            //foundHillfort.image4 = hillfort.image4
             foundHillfort.location = hillfort.location
             foundHillfort.visited = hillfort.visited
             logAll();
@@ -116,7 +116,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     }
 
     //Updates user credentials
-
+/*
     override fun updateCredentials(userSignedIn: UserModel, updatedUser : UserModel) {
         var foundUser: UserModel? = users.find { p -> p.email == userSignedIn.email }
         if (foundUser != null) {
@@ -126,7 +126,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         }
         serializeUsers()
     }
-
+*/
 
     //Deletes Hillfort
 
@@ -180,5 +180,9 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
     override fun findById(id:Long) : HillfortModel? {
         val foundHillfort: HillfortModel? = hillforts.find { it.id == id }
         return foundHillfort
+    }
+
+    override fun clear() {
+        hillforts.clear()
     }
 }

@@ -11,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.ab20075908.hillforts.helpers.checkLocationPermissions
 import org.ab20075908.hillforts.helpers.createDefaultLocationRequest
 import org.ab20075908.hillforts.helpers.isPermissionGranted
@@ -19,6 +20,7 @@ import org.ab20075908.hillforts.models.Location
 import org.ab20075908.hillforts.models.HillfortModel
 import org.ab20075908.hillforts.views.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.info
 import org.jetbrains.anko.uiThread
 
 
@@ -30,6 +32,8 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
     var edit = false;
     var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
     val locationRequest = createDefaultLocationRequest()
+    var IMAGE_NO = 1
+
 
     init {
         if (view.intent.hasExtra("hillfort_edit")) {
@@ -41,6 +45,7 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
                 doSetCurrentLocation()
             }
         }
+        //view.showHillfort(hillfort)
     }
 
     @SuppressLint("MissingPermission")
@@ -141,4 +146,27 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
             }
         }
     }
+
+    fun incrementImageSelected()
+    {
+        if(IMAGE_NO < 4)
+        {
+            IMAGE_NO++;
+
+        }
+        view?.showSelectedImage(IMAGE_NO);
+    }
+
+    //Decrements number of which image will be set by imagepicker
+
+    fun decrementImageSelected()
+    {
+
+        if(IMAGE_NO > 1)
+        {
+            IMAGE_NO--;
+        }
+        view?.showSelectedImage(IMAGE_NO);
+    }
+
 }

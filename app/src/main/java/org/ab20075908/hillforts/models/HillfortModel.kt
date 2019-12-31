@@ -14,6 +14,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class HillfortModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
                          var title: String = "",
+                         var fbId : String = "",
                          var description: String = "",
                          var image1: String = "",
                          var image2: String = "",

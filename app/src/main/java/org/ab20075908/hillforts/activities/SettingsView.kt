@@ -28,8 +28,8 @@ class SettingsView : AppCompatActivity(), AnkoLogger {
         setSupportActionBar(toolbarSettings)
 
 
-        emailEditField.setText(app.signedInUser.email)
-        passwordEditField.setText(app.signedInUser.password)
+        //emailEditField.setText(app.signedInUser.email)
+        //passwordEditField.setText(app.signedInUser.password)
 
 
         btnUpdate.setOnClickListener {
@@ -65,7 +65,7 @@ class SettingsView : AppCompatActivity(), AnkoLogger {
         var currentUser = UserModel()
         currentUser.email = emailEditField.text.toString()
         currentUser.password = passwordEditField.text.toString()
-        app.hillforts.updateCredentials(app.signedInUser,currentUser)
+       // app.hillforts.updateCredentials(app.signedInUser,currentUser)
     }
 
 }
