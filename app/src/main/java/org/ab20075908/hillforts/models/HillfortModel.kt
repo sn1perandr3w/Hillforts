@@ -20,6 +20,7 @@ data class HillfortModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
                          var image2: String = "",
                          var image3: String = "",
                          var image4: String = "",
+                         var rating: Int = 1,
                          var visited: Boolean = false,
                          @Embedded var location : Location = Location()): Parcelable
 @Parcelize
@@ -27,8 +28,10 @@ data class HillfortModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
 data class Location(var lat: Double = 0.0,
                     var lng: Double = 0.0,
                     var zoom: Float = 0f) : Parcelable
-
+/*
 @Parcelize
 @Entity
 data class UserModel(var email: String = "",
                     var password: String = "") : Parcelable
+
+ */

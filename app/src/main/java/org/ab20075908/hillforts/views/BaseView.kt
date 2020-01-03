@@ -24,6 +24,8 @@ enum class VIEW {
   LOCATION, HILLFORT, MAPS, LIST,  LOGIN
 }
 
+//Base View
+
 open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 
   var basePresenter: BasePresenter? = null
@@ -81,4 +83,6 @@ open abstract class BaseView() : AppCompatActivity(), AnkoLogger {
   open fun hideProgress() {}
   open fun showLocation(location : Location) {}
   open fun showSelectedImage(selection : Int) {}
+  open fun showRating(rating: Int){}
+  open fun showLocation(latitude: Double, longitude : Double){}
 }

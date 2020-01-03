@@ -11,6 +11,8 @@ import org.ab20075908.hillforts.helpers.readImageFromPath
 import org.ab20075908.hillforts.models.HillfortModel
 import org.ab20075908.hillforts.views.BaseView
 
+//View for Hillfort Maps
+
 class HillfortMapView  : BaseView(), GoogleMap.OnMarkerClickListener {
 
     lateinit var presenter: HillfortMapPresenter
@@ -31,16 +33,19 @@ class HillfortMapView  : BaseView(), GoogleMap.OnMarkerClickListener {
         }
     }
 
+    //Loads fields and image for hillfort
     override fun showHillfort(hillfort: HillfortModel) {
         currentTitle.text = hillfort.title
         currentDescription.text = hillfort.description
         Glide.with(this).load(hillfort.image1).into(currentImage);
     }
 
+    //Populates map with hillforts
     override fun showHillforts(hillforts: List<HillfortModel>) {
         presenter.doPopulateMap(map, hillforts)
     }
 
+    //Calls doMarkerSelected from presenter
     override fun onMarkerClick(marker: Marker): Boolean {
         presenter.doMarkerSelected(marker)
         return true

@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_edit_location.*
 
 import org.ab20075908.hillforts.views.BaseView
 
+//View for EditLocation
+
 class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
 
     lateinit var presenter: EditLocationPresenter
@@ -35,6 +37,11 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
             it.setOnMarkerClickListener(this)
             presenter.doConfigureMap(it)
         }
+
+        lat.setText("%.6f".format(presenter.location.lat))
+        lng.setText("%.6f".format(presenter.location.lng))
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -91,12 +98,4 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
         super.onSaveInstanceState(outState)
         mapView.onSaveInstanceState(outState)
     }
-
-    /*
-    override fun showLocation(latitude : Double, longitude : Double) {
-        lat.setText("%.6f".format(latitude))
-        lng.setText("%.6f".format(longitude))
-    }
-    */
-
 }

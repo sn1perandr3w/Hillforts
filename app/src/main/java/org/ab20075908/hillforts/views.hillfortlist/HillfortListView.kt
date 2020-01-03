@@ -5,20 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.ab20075908.hillforts.R
-import org.ab20075908.hillforts.activities.HillfortAdapter
-import org.ab20075908.hillforts.activities.HillfortListener
 import org.ab20075908.hillforts.models.HillfortModel
 
 
 import org.ab20075908.hillforts.views.BaseView
 
 
-//Standard ListActivity from Hillfort aside of additional options to menu at top
-//Menu Bar is commented below
+//View to HillfortList
 
 class HillfortListView : BaseView(), HillfortListener {
 
@@ -27,7 +23,7 @@ class HillfortListView : BaseView(), HillfortListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_list)
-        super.init(toolbar, true)
+        super.init(toolbar, false)
 
         presenter = initPresenter(HillfortListPresenter(this)) as HillfortListPresenter
 
@@ -36,16 +32,20 @@ class HillfortListView : BaseView(), HillfortListener {
         presenter.loadHillforts()
     }
 
+    //Shows hillforts from list
     override fun showHillforts(hillforts: List<HillfortModel>) {
-        recyclerView.adapter = HillfortAdapter(hillforts, this)
+        recyclerView.adapter =
+            HillfortAdapter(hillforts, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
 
+    //Creates dropdown menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    //Dropdown menu selection
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_add -> presenter.doAddHillfort()
@@ -55,6 +55,7 @@ class HillfortListView : BaseView(), HillfortListener {
         return super.onOptionsItemSelected(item)
     }
 
+    //Takes user to hillfortview
     override fun onHillfortClick(hillfort: HillfortModel) {
         presenter.doEditHillfort(hillfort)
     }

@@ -13,9 +13,11 @@ import org.ab20075908.hillforts.views.BaseView
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
+//Presenter for Hillfort Maps
 
 class HillfortMapPresenter(view: BaseView) : BasePresenter(view) {
 
+    //Populates map
     fun doPopulateMap(map: GoogleMap, hillforts: List<HillfortModel>) {
         map.uiSettings.setZoomControlsEnabled(true)
         hillforts.forEach {
@@ -27,16 +29,18 @@ class HillfortMapPresenter(view: BaseView) : BasePresenter(view) {
         }
     }
 
+    //Upon selection of marker, show the hillfort in question
     fun doMarkerSelected(marker: Marker) {
-        val tag = marker.tag as Long
+        val hillfort = marker.tag as HillfortModel
         doAsync {
-            val hillfort = marker.tag as HillfortModel
+
             uiThread {
                 if (hillfort != null) view?.showHillfort(hillfort)
             }
         }
     }
 
+    //Loads all hillforts
     fun loadHillforts() {
         doAsync {
             val hillforts = app.hillforts.findAll()

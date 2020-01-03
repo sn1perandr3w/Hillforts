@@ -13,6 +13,8 @@ import org.ab20075908.hillforts.models.Location
 import org.ab20075908.hillforts.views.BasePresenter
 import org.ab20075908.hillforts.views.BaseView
 
+//Presenter for EditLocation
+
 class EditLocationPresenter(view: BaseView) : BasePresenter(view) {
 
     var location = Location()
@@ -24,13 +26,12 @@ class EditLocationPresenter(view: BaseView) : BasePresenter(view) {
     fun doConfigureMap(map: GoogleMap) {
         val loc = LatLng(location.lat, location.lng)
         val options = MarkerOptions()
-            .title("Placemark")
+            .title("Hillfort")
             .snippet("GPS : " + loc.toString())
             .draggable(true)
             .position(loc)
         map.addMarker(options)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
-        //view?.showLocation(loc.latitude, loc.longitude);
     }
 
     fun doUpdateLocation(lat: Double, lng: Double) {
@@ -49,6 +50,4 @@ class EditLocationPresenter(view: BaseView) : BasePresenter(view) {
         val loc = LatLng(location.lat, location.lng)
         marker.setSnippet("GPS : " + loc.toString())
     }
-
-
 }

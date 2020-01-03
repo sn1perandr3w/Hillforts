@@ -45,9 +45,11 @@ class HillfortFireStore(val context: Context) : HillfortStore, AnkoLogger {
             foundHillfort.title = hillfort.title
             foundHillfort.description = hillfort.description
             foundHillfort.image1 = hillfort.image1
-            //foundHillfort.image2 = hillfort.image2
-            //foundHillfort.image3 = hillfort.image3
-            //foundHillfort.image4 = hillfort.image4
+            foundHillfort.image2 = hillfort.image2
+            foundHillfort.image3 = hillfort.image3
+            foundHillfort.image4 = hillfort.image4
+            foundHillfort.rating = hillfort.rating
+            foundHillfort.visited = hillfort.visited
             foundHillfort.location = hillfort.location
         }
 
@@ -85,6 +87,75 @@ class HillfortFireStore(val context: Context) : HillfortStore, AnkoLogger {
                 }.addOnSuccessListener { taskSnapshot ->
                     taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
                         hillfort.image1 = it.toString()
+                        db.child("users").child(userId).child("hillforts").child(hillfort.fbId).setValue(hillfort)
+                    }
+                }
+            }
+        }
+
+        if (hillfort.image2 != "") {
+            val fileName = File(hillfort.image2)
+            val imageName = fileName.getName()
+
+            var imageRef = st.child(userId + '/' + imageName)
+            val baos = ByteArrayOutputStream()
+            val bitmap = readImageFromPath(context, hillfort.image2)
+
+            bitmap?.let {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                val uploadTask = imageRef.putBytes(data)
+                uploadTask.addOnFailureListener {
+                    println(it.message)
+                }.addOnSuccessListener { taskSnapshot ->
+                    taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+                        hillfort.image2 = it.toString()
+                        db.child("users").child(userId).child("hillforts").child(hillfort.fbId).setValue(hillfort)
+                    }
+                }
+            }
+        }
+
+        if (hillfort.image3 != "") {
+            val fileName = File(hillfort.image3)
+            val imageName = fileName.getName()
+
+            var imageRef = st.child(userId + '/' + imageName)
+            val baos = ByteArrayOutputStream()
+            val bitmap = readImageFromPath(context, hillfort.image3)
+
+            bitmap?.let {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                val uploadTask = imageRef.putBytes(data)
+                uploadTask.addOnFailureListener {
+                    println(it.message)
+                }.addOnSuccessListener { taskSnapshot ->
+                    taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+                        hillfort.image3 = it.toString()
+                        db.child("users").child(userId).child("hillforts").child(hillfort.fbId).setValue(hillfort)
+                    }
+                }
+            }
+        }
+
+        if (hillfort.image4 != "") {
+            val fileName = File(hillfort.image4)
+            val imageName = fileName.getName()
+
+            var imageRef = st.child(userId + '/' + imageName)
+            val baos = ByteArrayOutputStream()
+            val bitmap = readImageFromPath(context, hillfort.image4)
+
+            bitmap?.let {
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                val uploadTask = imageRef.putBytes(data)
+                uploadTask.addOnFailureListener {
+                    println(it.message)
+                }.addOnSuccessListener { taskSnapshot ->
+                    taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
+                        hillfort.image4 = it.toString()
                         db.child("users").child(userId).child("hillforts").child(hillfort.fbId).setValue(hillfort)
                     }
                 }

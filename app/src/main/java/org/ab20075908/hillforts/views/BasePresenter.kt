@@ -3,6 +3,8 @@ package org.ab20075908.hillforts.views
 import android.content.Intent
 import org.ab20075908.hillforts.main.MainApp
 
+//Base Presenter
+
 open class BasePresenter(var view: BaseView?) {
 
   var app: MainApp =  view?.application as MainApp

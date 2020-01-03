@@ -10,10 +10,5 @@ interface HillfortStore {
     fun findById(id:Long) : HillfortModel?
     fun clear()
 
-    //User functions
-
-    //fun createUser(email : String, password : String)
-    //fun login(email : String, password : String) : UserModel?
-    //fun updateCredentials(userSignedIn: UserModel, updatedUser : UserModel)
 
 }

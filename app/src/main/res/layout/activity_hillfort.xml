@@ -27,11 +27,12 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -104,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="327dp"
                 android:onClick="onCheckboxClicked"
                 android:text="@string/checkbox_visited"
@@ -117,25 +118,69 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@color/colorAccent"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="@string/button_addImage"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow"
-                tools:layout_editor_absoluteX="16dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow" />
 
-            <ImageView
-                android:id="@+id/hillfortImage1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkbox_visited"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_visited">
+
+                <ImageView
+                    android:id="@+id/hillfortImage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/ic_launcher" />
+
+
+                <ImageView
+                    android:id="@+id/hillfortImage2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/ic_launcher" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableRow2">
+
+                <ImageView
+                    android:id="@+id/hillfortImage3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:id="@+id/hillfortImage4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/ic_launcher" />
+
+            </TableRow>
 
             <TextView
                 android:id="@+id/imageHint"
@@ -170,16 +215,13 @@
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
-                android:layout_width="375dp"
-                android:layout_height="200dp"
+                android:layout_width="372dp"
+                android:layout_height="240dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hillfortImage1" />
+                app:layout_constraintTop_toBottomOf="@+id/tableRow3" />
 
             <TextView
                 android:id="@+id/lat"
@@ -202,6 +244,37 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/description"
                 app:layout_constraintTop_toTopOf="@+id/description" />
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="79dp"
+                android:layout_marginBottom="64dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mapView">
+
+                <Button
+                    android:id="@+id/decrementRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&lt;" />
+
+                <TextView
+                    android:id="@+id/ratingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rating: 1/5" />
+
+                <Button
+                    android:id="@+id/incrementRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&gt;" />
+            </TableRow>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

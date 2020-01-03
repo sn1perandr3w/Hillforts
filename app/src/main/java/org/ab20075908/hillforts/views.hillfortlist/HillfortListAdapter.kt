@@ -1,4 +1,4 @@
-package org.ab20075908.hillforts.activities
+package org.ab20075908.hillforts.views.hillfortlist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.card_hillfort.view.*
 import org.ab20075908.hillforts.R
-import org.ab20075908.hillforts.helpers.readImageFromPath
 import org.ab20075908.hillforts.models.HillfortModel
 
-//Standard Adapter from Placemark
+//Adapter for HillfortList
 
 
 interface HillfortListener {
@@ -43,7 +42,7 @@ class HillfortAdapter constructor(
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(hillfort: HillfortModel,  listener : HillfortListener) {
-            itemView.hillfortTitle.text = hillfort.title
+            itemView.hillfortTitle.text = hillfort.title + " | Rating: " + hillfort.rating
             itemView.description.text = hillfort.description
             Glide.with(itemView.context).load(hillfort.image1).into(itemView.imageIcon);
             itemView.setOnClickListener { listener.onHillfortClick(hillfort) }

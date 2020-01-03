@@ -1,4 +1,4 @@
-package org.ab20075908.hillforts.activities
+package org.ab20075908.hillforts.views.splashscreen
 
 import android.content.Intent
 import android.os.Bundle

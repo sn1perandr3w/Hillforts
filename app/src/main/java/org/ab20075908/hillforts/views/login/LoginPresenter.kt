@@ -7,6 +7,7 @@ import org.ab20075908.hillforts.views.BaseView
 import org.ab20075908.hillforts.views.VIEW
 import org.jetbrains.anko.toast
 
+//Presenter for Login page
 
 class LoginPresenter(view: BaseView) : BasePresenter(view) {
 
@@ -19,6 +20,7 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
         }
     }
 
+    //Login using firebase
     fun doLogin(email: String, password: String) {
         view?.showProgress()
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(view!!) { task ->
@@ -39,6 +41,7 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
         }
     }
 
+    //Sign up using firebase
     fun doSignUp(email: String, password: String) {
         view?.showProgress()
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(view!!) { task ->
@@ -52,9 +55,15 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
         }
     }
 
+
+    //Used in main menu to prevent bug of a user being left signed in when closing the app externally.
     fun doLogout() {
-        FirebaseAuth.getInstance().signOut()
-        app.hillforts.clear()
-        view?.navigateTo(VIEW.LOGIN)
+        var user = FirebaseAuth.getInstance().currentUser
+
+        if(user != null) {
+            FirebaseAuth.getInstance().signOut()
+            app.hillforts.clear()
+            view?.navigateTo(VIEW.LOGIN)
+        }
     }
 }

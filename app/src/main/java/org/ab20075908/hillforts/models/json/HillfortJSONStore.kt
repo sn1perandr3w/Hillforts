@@ -9,7 +9,7 @@ import org.ab20075908.hillforts.helpers.read
 import org.ab20075908.hillforts.helpers.write
 import org.ab20075908.hillforts.models.HillfortModel
 import org.ab20075908.hillforts.models.HillfortStore
-import org.ab20075908.hillforts.models.UserModel
+
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.util.*
@@ -24,7 +24,7 @@ val JSON_FILE = "hillforts.json"
 val USRJSON_FILE = "users.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<ArrayList<HillfortModel>>() {}.type
-val listType2 = object : TypeToken<ArrayList<UserModel>>() {}.type
+
 
 
 fun generateRandomId(): Long {
@@ -35,7 +35,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
 
     val context: Context
     var hillforts = mutableListOf<HillfortModel>()
-    var users = mutableListOf<UserModel>()
+
 
     constructor (context: Context) {
         this.context = context
@@ -43,11 +43,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
             info("DESERIALIZING")
             deserialize()
         }
-        if(exists(context, USRJSON_FILE))
-        {
-            info("DESERIALIZING USERS")
-            deserializeUsers()
-        }
+
     }
 
     override fun findAll(): MutableList<HillfortModel> {
@@ -149,22 +145,6 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         write(context, JSON_FILE, jsonString)
     }
 
-    //Serializes Users
-
-    private fun serializeUsers() {
-        val jsonString = gsonBuilder.toJson(users,
-            listType2
-        )
-        write(context, USRJSON_FILE, jsonString)
-    }
-
-    //Deserializes Users
-
-    private fun deserializeUsers() {
-        val jsonString = read(context, USRJSON_FILE)
-        users = Gson().fromJson(jsonString, listType2)
-        info("USERS  = $users")
-    }
 
     //Deserializes Hillforts
 
