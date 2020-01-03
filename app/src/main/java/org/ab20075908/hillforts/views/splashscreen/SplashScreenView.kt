@@ -18,6 +18,7 @@ class SplashScreenView : AppCompatActivity() {
 
 
 
+
     internal val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
 
